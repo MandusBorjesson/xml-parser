@@ -163,15 +163,24 @@ class AuthorParser:
     def parse(self, element):
         card_head = parse_elements_with_tag(element, ["head", "subhead"])
         card_image = parse_elements_with_tag(element, "image")
-        card_body = parse_elements_with_tag(element, ["head", "subhead", "image"], invert=True)
+        card_contact = parse_elements_with_tag(element, ["address", "email", "number"])
+        card_body = parse_elements_with_tag(element, "text")
 
         card = [dbc.Col(card_image, width=4)]
         card.append(
             dbc.Col(
                 card_head
-                + [html.Hr(className="my-2")]
-                + card_body)
+                + [
+                html.Hr(className="my-2"),
+                dbc.Row(
+                    [
+                    dbc.Col(card_body),
+                    dbc.Col(card_contact)
+                    ]
+                )
+                ]
             )
+        )
 
         return dbc.Card(dbc.Row(card))
 
