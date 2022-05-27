@@ -24,7 +24,11 @@ class DefaultParser:
             content.append(html.P())
 
         # Create columns
-        rows = [html.H1(element.tag.capitalize())]
+        rows = []
+
+        if "heading" in element.attrib:
+            rows.append(html.H1(element.attrib["heading"]))
+
         for i in range(0, len(content), cols):
             rows.append(dbc.Row([dbc.Col(j) for j in content[i:i+cols]]))
             rows.append(html.P())
