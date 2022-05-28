@@ -16,7 +16,10 @@ class DefaultParser:
         for child in element:
             content.append(parse_element(child))
 
-        cols = self.__class__.columns
+        if "columns" in element.attrib:
+            cols = int(element.attrib["columns"])
+        else:
+            cols = self.__class__.columns
 
         # Fill missing columns with empty space (Prevents stretching of last column)
         missing_elements = cols - (len(content) % cols)
@@ -184,19 +187,6 @@ class AuthorParser:
 
         return dbc.Card(dbc.Row(card))
 
-# Groups parsers
-class JobGroupParser(DefaultParser):
-    tag = "jobs"
-    columns = 2
-
-class MeritGroupParser(DefaultParser):
-    tag = "merits"
-    columns = 3
-
-class SkillGroupParser(DefaultParser):
-    tag = "skills"
-    columns = 4
-
 
 PARSERS = [
     # Low-level
@@ -217,10 +207,6 @@ PARSERS = [
     MeritParser,
     AuthorParser,
     SkillParser,
-    # Group parsers
-    JobGroupParser,
-    MeritGroupParser,
-    SkillGroupParser,
     # Default
     DefaultParser,
 ]
