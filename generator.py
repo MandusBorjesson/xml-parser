@@ -99,38 +99,34 @@ class ImageParser(ContentParser):
             ))
 
 class ContactParser(ContentParser):
-    tag = None
-    prefix = ""
+    tag = "contact"
     def parse(self, element):
-        content = self.get_content(element)
+        button = {}
+
+        for field in element:
+            button[field.tag] = self.get_content(field)
+
+        for tag in ["type", "text"]:
+            assert tag in button, f"Contacts must contain a '{tag}' field!"
+
         extraargs = {}
-        if self.__class__.prefix != "":
+        if "link" in button:
             extraargs = {
-                'href': self.__class__.prefix + content,
+                'href': button["link"],
                 'external_link': True
             }
+
         return html.P(dbc.ButtonGroup(
                 [
-                    dbc.Button(element.tag.capitalize(), outline=False, color="primary"),
+                    dbc.Button(button["type"], outline=False, color="primary"),
                     dbc.Button(
-                        content,
+                        button["text"],
                         outline=True,
                         color="primary",
                         **extraargs,
                         ),
                 ]
             ))
-
-class PhoneParser(ContactParser):
-    tag = "number"
-    prefix = "tel:"
-
-class EmailParser(ContactParser):
-    tag = "email"
-    prefix = "mailto:"
-
-class AddressParser(ContactParser):
-    tag = "address"
 
 # High-level parsers
 class NiceCard:
@@ -167,7 +163,7 @@ class AuthorParser:
     def parse(self, element):
         card_head = parse_elements_with_tag(element, ["head", "subhead"])
         card_image = parse_elements_with_tag(element, "image")
-        card_contact = parse_elements_with_tag(element, ["address", "email", "number"])
+        card_contact = parse_elements_with_tag(element, "contact")
         card_body = parse_elements_with_tag(element, "text")
 
         card = [dbc.Col(card_image, width=4)]
@@ -213,9 +209,7 @@ PARSERS = [
     CurrentParser,
     LinkParser,
     ImageParser,
-    PhoneParser,
-    EmailParser,
-    AddressParser,
+    ContactParser,
     ProgressParser,
     # High-level
     JobParser,
