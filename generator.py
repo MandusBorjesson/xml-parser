@@ -152,15 +152,6 @@ class NiceCard:
 
         return dbc.Card(card)
 
-class JobParser(NiceCard):
-    tag = "job"
-
-class MeritParser(NiceCard):
-    tag = "merit"
-
-class SkillParser(NiceCard):
-    tag = "skill"
-
 class AuthorParser:
     tag = "author"
     def parse(self, element):
@@ -203,10 +194,7 @@ PARSERS = [
     ProgressParser,
     # High-level
     NiceCard,
-    JobParser,
-    MeritParser,
     AuthorParser,
-    SkillParser,
     # Default
     DefaultParser,
 ]
