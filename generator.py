@@ -130,7 +130,7 @@ class ContactParser(ContentParser):
 
 # High-level parsers
 class NiceCard:
-    tag = None
+    tag = "card"
     def parse(self, element):
 
         card_head = parse_elements_with_tag(element, ["head", "subhead"])
@@ -212,6 +212,7 @@ PARSERS = [
     ContactParser,
     ProgressParser,
     # High-level
+    NiceCard,
     JobParser,
     MeritParser,
     AuthorParser,
