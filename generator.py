@@ -254,9 +254,7 @@ mytree = ET.parse('input.xml')
 myroot = mytree.getroot()
 
 content = []
-for x in myroot:
-    content.append(parse_element(x))
-    content.append(html.P())
+content.append(parse_element(myroot))
 
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
