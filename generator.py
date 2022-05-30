@@ -1,5 +1,6 @@
 #! /usr/local/bin/python3
 
+import argparse
 import xml.etree.ElementTree as ET
 import dash
 import dash_bootstrap_components as dbc
@@ -225,8 +226,17 @@ def parse_elements_with_tag(element, tag, invert=False):
     return [parse_element(e) for e in get_elements_with_tag(element, tag, invert)]
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="Web page generator."
+        )
+    parser.add_argument(
+        '--input',
+        required=True,
+        help='Input XML file for generation.'
+        )
+    args = parser.parse_args()
 
-    mytree = ET.parse('input.xml')
+    mytree = ET.parse(args.input)
     myroot = mytree.getroot()
 
     content = []
