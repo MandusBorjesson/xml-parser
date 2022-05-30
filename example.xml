@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cv>
+    <author>
+        <head>
+            John Doe
+        </head>
+        <image>/static/images/logo.png</image>
+        <subhead>
+            Example of a generated page
+        </subhead>
+        <text>
+            Some nice normal text to fill out this section.
+        </text>
+        <contact>
+            <type> Web </type>
+            <text> xml-parser on GitHub </text>
+            <link> https://github.com/MandusBorjesson/xml-parser </link>
+        </contact>
+        <contact>
+            <type> Address </type>
+            <text> NULL Island </text>
+        </contact>
+    </author>
+    <section heading="Two columns" columns="2">
+        <card>
+            <head> Card 1 </head>
+            <subhead> Demo card to show text </subhead>
+            <date> 2022 </date>
+            <text>
+                You can add text boxes, tags and dates to cards.
+            </text>
+            <tag> Tag 1 </tag>
+            <tag> Tag 2 </tag>
+        </card>
+        <card>
+            <head> Card 2 </head>
+            <subhead> Note how we shifted column! </subhead>
+            <date> 2022 </date>
+            <text>
+                Rows are created with 2 columns each. Cards are added in the order they are defined in the input.
+            </text>
+        </card>
+        <card>
+            <head> Card 3 </head>
+            <subhead> Multiple elements </subhead>
+            <text>
+                You can mix and match element types, for example a progress bar,
+            </text>
+            <progress> 90 </progress>
+            <text>
+                some more text, and a...
+            </text>
+            <link> Link back to the repo!; https://github.com/MandusBorjesson/xml-parser </link>
+            <text>
+                They are rendered in the order they were defined in the XML.
+            </text>
+        </card>
+    </section>
+    <section heading="3 Columns?" columns="3">
+        <card>
+            <head> Column 1 </head>
+            <subhead> Our first column </subhead>
+            <text>
+                You can add as many column as you desire!
+            </text>
+        </card>
+        <card>
+            <head> Column 2 </head>
+            <subhead> Our second column </subhead>
+        </card>
+        <card>
+            <head> Column 3 </head>
+            <subhead> Our third column </subhead>
+            <image>/static/images/logo.png</image>
+
+        </card>
+    </section>
+</cv>
