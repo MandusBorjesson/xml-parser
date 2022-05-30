@@ -224,20 +224,21 @@ def get_elements_with_tag(elements, tags, invert=False):
 def parse_elements_with_tag(element, tag, invert=False):
     return [parse_element(e) for e in get_elements_with_tag(element, tag, invert)]
 
-mytree = ET.parse('input.xml')
-myroot = mytree.getroot()
-
-content = []
-content.append(parse_element(myroot))
-
-app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-
-CONTENT_STYLE = {
-    "margin-left": "3rem",
-    "margin-right": "3rem",
-    "padding": "2rem 1rem",
-}
-app.layout = html.Div(content, style=CONTENT_STYLE)
-
 if __name__ == "__main__":
+
+    mytree = ET.parse('input.xml')
+    myroot = mytree.getroot()
+
+    content = []
+    content.append(parse_element(myroot))
+
+    app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+    CONTENT_STYLE = {
+        "margin-left": "3rem",
+        "margin-right": "3rem",
+        "padding": "2rem 1rem",
+    }
+    app.layout = html.Div(content, style=CONTENT_STYLE)
+
     app.run_server(port=8888)
